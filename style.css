@@ -60,4 +60,18 @@ h1 {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+}/* Social Buttons (Discord & Steam) */
+.socials {
+    margin-top: 20px;
 }
+
+.socials img {
+    width: 200px; /* Size of the buttons */
+    margin: 10px; /* Space between them */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.socials img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
