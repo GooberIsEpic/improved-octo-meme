@@ -1,4 +1,4 @@
-/* 🍫 Fancy Chocolate-Themed Title 🍫 */
+/* 🍫 Fancy Chocolate-Themed Styling 🍫 */
 
 /* Background: Smooth chocolate gradient */
 body {
@@ -21,9 +21,43 @@ h1 {
     animation: fadeIn 1.2s ease-in-out; /* Smooth fade-in effect */
 }
 
+/* Main Content Box */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2); /* Slight transparency */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* About Me Section */
+.about {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* TF2 Goals */
+.tf2-goals {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sandvich Section */
+.sandvich img {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 15px;
+}
+
 /* 🍫 Smooth Fade-in Animation 🍫 */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
