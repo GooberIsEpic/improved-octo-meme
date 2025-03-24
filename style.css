@@ -1,4 +1,4 @@
-/* 🍫 Fancy Chocolate-Themed Website 🍫 */
+/* 🍫 Fancy Chocolate-Themed Title 🍫 */
 
 /* Background: Smooth chocolate gradient */
 body {
@@ -10,59 +10,20 @@ body {
     padding: 0;
 }
 
-/* Chocolate branding title */
+/* Super Fancy Title */
 h1 {
-    font-size: 50px;
+    font-size: 60px; /* Bigger and fancier */
     font-weight: bold;
-    color: #d4a373; /* Gold */
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Smooth shadow */
-    margin-top: 50px;
-}
-
-/* Subtitle text */
-p {
-    font-size: 20px;
-    font-style: italic;
-    color: #f5d7b6; /* Soft caramel color */
-    margin-bottom: 40px;
-}
-
-/* 🍫 Chocolate-styled button 🍫 */
-button {
-    background: linear-gradient(to bottom, #8b5a2b, #a97142); /* Milk chocolate gradient */
-    color: white;
-    padding: 15px 30px;
-    font-size: 22px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out;
-}
-
-/* Button Hover Effect */
-button:hover {
-    background: linear-gradient(to bottom, #a97142, #c48e65); /* Lighter chocolate */
-    transform: scale(1.05); /* Slight pop effect */
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
-}
-
-/* 🍫 Chocolate Bar Effect 🍫 */
-.container {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    border-radius: 10px;
-    width: 50%;
-    margin: auto;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    color: #d4a373; /* Gold color */
+    text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5); /* Smooth shadow */
+    margin-top: 80px;
+    letter-spacing: 2px; /* Space between letters */
+    animation: fadeIn 1.2s ease-in-out; /* Smooth fade-in effect */
 }
 
 /* 🍫 Smooth Fade-in Animation 🍫 */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
+    from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-h1, p, button {
-    animation: fadeIn 1s ease-in-out;
-}
