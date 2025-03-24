@@ -1,30 +1,68 @@
-/* Makes the background look like dark chocolate */
+/* 🍫 Fancy Chocolate-Themed Website 🍫 */
+
+/* Background: Smooth chocolate gradient */
 body {
-    background-color: #4e2a1e; /* Dark brown */
-    color: #f5e1c0; /* Cream-colored text */
-    font-family: 'Georgia', serif; /* Fancy font */
-    text-align: center; /* Centers the text */
+    background: linear-gradient(to bottom, #3e2723, #5d4037, #795548); /* Dark to milk chocolate */
+    color: #f5e1c0; /* Creamy vanilla color */
+    font-family: 'Playfair Display', serif; /* Elegant font */
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-/* Styles the main title */
+/* Chocolate branding title */
 h1 {
-    color: #d4a373; /* Gold-like color */
-    font-size: 40px; /* Makes the title big */
+    font-size: 50px;
+    font-weight: bold;
+    color: #d4a373; /* Gold */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Smooth shadow */
+    margin-top: 50px;
 }
 
-/* Styles a button to look smooth and chocolatey */
-button {
-    background-color: #8b5a2b; /* Milk chocolate color */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px; /* Rounded corners */
+/* Subtitle text */
+p {
     font-size: 20px;
-    cursor: pointer; /* Makes the cursor change on hover */
+    font-style: italic;
+    color: #f5d7b6; /* Soft caramel color */
+    margin-bottom: 40px;
 }
 
-/* Changes the button color when hovered */
+/* 🍫 Chocolate-styled button 🍫 */
+button {
+    background: linear-gradient(to bottom, #8b5a2b, #a97142); /* Milk chocolate gradient */
+    color: white;
+    padding: 15px 30px;
+    font-size: 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
 button:hover {
-    background-color: #a97142; /* Lighter brown */
+    background: linear-gradient(to bottom, #a97142, #c48e65); /* Lighter chocolate */
+    transform: scale(1.05); /* Slight pop effect */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* 🍫 Chocolate Bar Effect 🍫 */
+.container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 🍫 Smooth Fade-in Animation 🍫 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, p, button {
+    animation: fadeIn 1s ease-in-out;
+}
