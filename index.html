@@ -69,8 +69,16 @@
 
   <div class="footer">© 2070 - still epik after all these years</div>
 
-  <!-- background musica -->
-  <audio src="odyssey.mp3" autoplay loop></audio>
+  <!-- background music dummy -->
+  <audio id="bgm" src="odyssey.mp3" autoplay loop muted></audio>
+
+  <script>
+    window.addEventListener("click", () => {
+      const audio = document.getElementById("bgm");
+      audio.muted = false;
+      audio.play();
+    }, { once: true });
+  </script>
 
 </body>
 </html>
