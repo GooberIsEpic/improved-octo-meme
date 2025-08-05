@@ -1,4 +1,10 @@
-body {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+@font-face {
+  font-family: 'ComicSansLike';
+  src: url('https://fonts.cdnfonts.com/s/17344/ComicSansMS.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
+body {
+  font-family: 'ComicSansLike', cursive, sans-serif;
+}
