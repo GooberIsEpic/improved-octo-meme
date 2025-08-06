@@ -19,6 +19,7 @@
       margin: 0;
       padding: 20px;
       cursor: auto;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -72,82 +73,39 @@
       padding-top: 10px;
     }
 
-    /* shake animation for wrong spin */
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-10px); }
-      40%, 80% { transform: translateX(10px); }
+    #slot-machine {
+      margin-top: 20px;
+    }
+
+    .reel-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      overflow: hidden;
+      height: 100px;
+    }
+
+    .reel {
+      font-size: 72px;
+      width: 100px;
+      line-height: 100px;
+      font-weight: bold;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      user-select: none;
+      transform: translateY(0);
     }
 
     .shake {
       animation: shake 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
-    /* slot machine styles */
-    #slot-machine {
-      margin-top: 30px;
+    @keyframes shake {
+      0%, 100% { transform: translate(0, 0); }
+      20%, 60% { transform: translate(-10px, 0); }
+      40%, 80% { transform: translate(10px, 0); }
     }
 
-    .reel-container {
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-      height: 100px;
-      margin-bottom: 10px;
-      border: 3px solid #ff00ff;
-      width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-      background: #111;
-      box-shadow: 0 0 15px #ff00ff inset;
-    }
-
-    .reel {
-      width: 100px;
-      height: 100px;
-      font-size: 72px;
-      line-height: 100px;
-      color: #00ff00;
-      font-family: 'ComicSans', cursive;
-      border-left: 1px solid #ff00ff;
-      border-right: 1px solid #00ffff;
-      text-shadow: 0 0 10px #00ff00;
-      user-select: none;
-      background: linear-gradient(180deg, #222, #000);
-      transform: translateY(0);
-    }
-
-    .reel:first-child {
-      border-left: none;
-    }
-
-    .reel:last-child {
-      border-right: none;
-    }
-
-    #spin-btn {
-      background-color: #00ff00;
-      border: none;
-      padding: 10px 30px;
-      font-size: 20px;
-      font-family: 'ComicSans', cursive;
-      color: black;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ff00;
-      transition: background-color 0.3s ease;
-    }
-
-    #spin-btn:disabled {
-      background-color: #444;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    #spin-btn:hover:not(:disabled) {
-      background-color: #ff00ff;
-      color: white;
-      box-shadow: 0 0 20px #ff00ff;
-    }
   </style>
 </head>
 <body>
@@ -157,9 +115,9 @@
   <marquee>welcome to my epik site!!11!</marquee>
 
   <div class="content">
-    <p>whats up. CLICK IF YOU WANT AUDIO!1!1</p>
+    <p>whats up. CLICK IF YOU WANT MUSIC!</p>
     <p>yeah also instead of ipad we got itablet in 2070</p>
-    <p>also its supposed to be like this, XD.</p>
+    <p>NOTE: This website is for PC only!</p>
 
     <div id="slot-machine">
       <div class="reel-container">
@@ -187,10 +145,15 @@
   <audio id="buzzer" src="buzzer.mp3"></audio>
 
   <script>
-    const symbols = ['?', 'C', 'D', '7', 'L', 'S'];
-    const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
+    const symbols = ['?', '$', '♣', '7', '♦', '♠'];
+    const reels = [
+      document.getElementById('reel1'),
+      document.getElementById('reel2'),
+      document.getElementById('reel3')
+    ];
     const spinBtn = document.getElementById('spin-btn');
     const buzzer = document.getElementById('buzzer');
+    const bgm = document.getElementById('bgm');
 
     function shakeScreen() {
       document.body.classList.add('shake');
@@ -200,15 +163,23 @@
     }
 
     spinBtn.addEventListener('click', () => {
+      if (bgm.muted) {
+        bgm.muted = false;
+        bgm.play();
+      }
+
       spinBtn.disabled = true;
 
-      reels.forEach((reel, index) => {
+      reels.forEach((reel) => {
         reel.style.transition = 'none';
         reel.style.transform = 'translateY(0)';
       });
 
+      const results = [];
+
       reels.forEach((reel, i) => {
         const finalIndex = Math.floor(Math.random() * symbols.length);
+        results.push(symbols[finalIndex]);
         const moveY = -finalIndex * 100;
 
         setTimeout(() => {
@@ -217,15 +188,7 @@
 
           if (i === reels.length - 1) {
             setTimeout(() => {
-              const results = reels.map(r => {
-                const transformMatrix = window.getComputedStyle(r).transform;
-                const match = transformMatrix.match(/matrix.*\((.+)\)/);
-                if (!match) return '?';
-                const values = match[1].split(', ');
-                const ty = parseFloat(values[5]);
-                const index = Math.abs(Math.round(ty / 100));
-                return symbols[index] || '?';
-              });
+              reels.forEach((r, idx) => r.textContent = results[idx]);
 
               if (results.every(s => s === '7')) {
                 window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
@@ -240,13 +203,11 @@
       });
     });
 
+    // play em game BAHHAHA
     window.addEventListener("click", () => {
-      const audio = document.getElementById("bgm");
-      if (audio.paused) {
-        audio.muted = false;
-        audio.play().catch(() => {
-          audio.muted = true;
-        });
+      if (bgm.muted) {
+        bgm.muted = false;
+        bgm.play();
       }
     }, { once: true });
   </script>
