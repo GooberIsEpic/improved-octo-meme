@@ -13,6 +13,7 @@ body {
   margin: 0;
   padding: 20px;
   cursor: auto;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -23,7 +24,9 @@ h1 {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 marquee {
@@ -67,69 +70,40 @@ a:hover {
 }
 
 #slot-machine {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .reel-container {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   overflow: hidden;
   height: 100px;
-  width: 320px;
-  margin: 0 auto 10px;
-  border: 3px solid #ff00ff;
-  background-color: #222;
-  box-shadow: 0 0 15px #ff00ff;
-  border-radius: 10px;
 }
 
 .reel {
-  flex: 1;
-  font-size: 80px;
+  font-size: 72px;
+  width: 100px;
   line-height: 100px;
+  font-weight: bold;
   color: #00ff00;
-  font-family: 'ComicSans', cursive;
+  text-shadow: 0 0 10px #00ff00;
   user-select: none;
   transform: translateY(0);
 }
 
-#spin-btn {
-  background-color: #00ff00;
-  border: none;
-  padding: 12px 30px;
-  font-size: 20px;
-  font-family: 'ComicSans', cursive;
-  cursor: pointer;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-  box-shadow: 0 0 10px #00ff00;
-  transition: background-color 0.3s ease;
-}
-
-#spin-btn:hover:enabled {
-  background-color: #ff00ff;
-  color: white;
-  box-shadow: 0 0 15px #ff00ff;
-}
-
-#spin-btn:disabled {
-  background-color: #555;
-  cursor: not-allowed;
-  box-shadow: none;
+.shake {
+  animation: shake 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @keyframes shake {
-  0% { transform: translate(0, 0); animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
-  20% { transform: translate(-10px, 5px); animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
-  40% { transform: translate(10px, -5px); animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
-  60% { transform: translate(-10px, 5px); animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
-  80% { transform: translate(10px, -5px); animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
-  100% { transform: translate(0, 0); }
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  20%, 60% {
+    transform: translate(-10px, 0);
+  }
+  40%, 80% {
+    transform: translate(10px, 0);
+  }
 }
-
-.shake {
-  animation: shake 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
-}
-
