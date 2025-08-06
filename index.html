@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>my epik site1!1111</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     @font-face {
       font-family: 'ComicSans';
@@ -19,7 +18,6 @@
       margin: 0;
       padding: 20px;
       cursor: auto;
-      overflow-x: hidden;
     }
 
     h1 {
@@ -83,6 +81,13 @@
       gap: 20px;
       overflow: hidden;
       height: 100px;
+      border: 4px solid #ff00ff;
+      border-radius: 8px;
+      background: #111;
+      box-shadow: 0 0 15px #ff00ff;
+      width: 340px;
+      margin: 20px auto;
+      user-select: none;
     }
 
     .reel {
@@ -92,20 +97,19 @@
       font-weight: bold;
       color: #00ff00;
       text-shadow: 0 0 10px #00ff00;
-      user-select: none;
-      transform: translateY(0);
+      will-change: transform;
+      white-space: nowrap;
     }
 
     .shake {
-      animation: shake 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+      animation: shakeAnim 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
-    @keyframes shake {
+    @keyframes shakeAnim {
       0%, 100% { transform: translate(0, 0); }
       20%, 60% { transform: translate(-10px, 0); }
       40%, 80% { transform: translate(10px, 0); }
     }
-
   </style>
 </head>
 <body>
@@ -115,9 +119,9 @@
   <marquee>welcome to my epik site!!11!</marquee>
 
   <div class="content">
-    <p>whats up. CLICK IF YOU WANT MUSIC!</p>
+    <p>whats up. CLICK IF YOU WANT AUDIO!1!1</p>
     <p>yeah also instead of ipad we got itablet in 2070</p>
-    <p>NOTE: This website is for PC only!</p>
+    <p>also its supposed to be like this, XD.</p>
 
     <div id="slot-machine">
       <div class="reel-container">
@@ -149,11 +153,28 @@
     const reels = [
       document.getElementById('reel1'),
       document.getElementById('reel2'),
-      document.getElementById('reel3')
+      document.getElementById('reel3'),
     ];
+
     const spinBtn = document.getElementById('spin-btn');
     const buzzer = document.getElementById('buzzer');
-    const bgm = document.getElementById('bgm');
+
+    const symbolHeight = 100;
+    const repeatCount = 4;
+
+    function generateReelContent() {
+      return symbols
+        .map((s) => s)
+        .concat(symbols)
+        .concat(symbols)
+        .concat(symbols)
+        .join('<br>');
+    }
+
+    reels.forEach((reel) => {
+      reel.innerHTML = generateReelContent();
+      reel.style.transform = 'translateY(0)';
+    });
 
     function shakeScreen() {
       document.body.classList.add('shake');
@@ -163,55 +184,40 @@
     }
 
     spinBtn.addEventListener('click', () => {
-      if (bgm.muted) {
-        bgm.muted = false;
-        bgm.play();
-      }
-
       spinBtn.disabled = true;
 
-      reels.forEach((reel) => {
-        reel.style.transition = 'none';
-        reel.style.transform = 'translateY(0)';
-      });
-
-      const results = [];
+      const finalIndices = reels.map(() => Math.floor(Math.random() * symbols.length));
 
       reels.forEach((reel, i) => {
-        const finalIndex = Math.floor(Math.random() * symbols.length);
-        results.push(symbols[finalIndex]);
-        const moveY = -finalIndex * 100;
+        const totalIndex = (repeatCount - 1) * symbols.length + finalIndices[i];
+        const moveY = totalIndex * symbolHeight;
 
-        setTimeout(() => {
-          reel.style.transition = 'transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1)';
-          reel.style.transform = `translateY(${moveY}px)`;
-
-          if (i === reels.length - 1) {
-            setTimeout(() => {
-              reels.forEach((r, idx) => r.textContent = results[idx]);
-
-              if (results.every(s => s === '7')) {
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-              } else {
-                buzzer.play();
-                shakeScreen();
-                spinBtn.disabled = false;
-              }
-            }, 1600);
-          }
-        }, i * 300);
+        reel.style.transition = 'transform 3s cubic-bezier(0.645, 0.045, 0.355, 1)';
+        reel.style.transform = `translateY(-${moveY}px)`;
       });
+
+      setTimeout(() => {
+        const allSevens = finalIndices.every((index) => symbols[index] === '7');
+
+        if (allSevens) {
+          window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        } else {
+          buzzer.play();
+          shakeScreen();
+          spinBtn.disabled = false;
+        }
+      }, 3100);
     });
 
-    // play em game BAHHAHA
-    window.addEventListener("click", () => {
-      if (bgm.muted) {
-        bgm.muted = false;
-        bgm.play();
-      }
+    // Enable musik :3
+    window.addEventListener('click', () => {
+      const audio = document.getElementById('bgm');
+      audio.muted = false;
+      audio.play();
     }, { once: true });
   </script>
 
 </body>
 </html>
+
 
