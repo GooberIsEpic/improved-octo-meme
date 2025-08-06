@@ -1,10 +1,68 @@
+/* Load Comic Sans from root */
 @font-face {
-  font-family: 'ComicSansMS';
-  src: url('fonts/COMIC.ttf') format('truetype');
+  font-family: 'ComicSans';
+  src: url('ComicSans.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'ComicSansMS', cursive, sans-serif;
+  background-color: black;
+  color: #00ff00;
+  font-family: 'ComicSans', cursive;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  cursor: auto;
+}
+
+h1 {
+  font-size: 64px;
+  color: #ff00ff;
+  text-shadow: 2px 2px #00ffff;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+marquee {
+  font-family: 'ComicSans', cursive;
+  color: #ffff00;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 20px 0;
+  border-top: 2px dashed #ff00ff;
+  border-bottom: 2px dashed #00ffff;
+  padding: 10px 0;
+  background-color: #111;
+}
+
+.content {
+  border: 5px dotted #ff00ff;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  background-color: #111;
+  box-shadow: 0 0 10px #ff00ff;
+}
+
+a {
+  color: #00ff00;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+.footer {
+  font-size: 14px;
+  color: #888;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
 }
